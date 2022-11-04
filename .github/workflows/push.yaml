@@ -17,10 +17,11 @@ jobs:
           ls ${{ github.workspace }}
 
       - name: Read package.json
-        id: json_environments
+        id: package
         uses: juliangruber/read-file-action@v1
         with:
           path: ./environments.json
 
-      - run: echo ${{steps.json_environments.outputs.content}}
+      - run: echo "${{steps.package.outputs.content}}"
+
       - run: echo "🍏 This job's status is ${{ job.status }}."
