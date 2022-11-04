@@ -22,6 +22,6 @@ jobs:
         with:
           path: ./environments.json
 
-      - run: echo "${{steps.package.outputs.content}}"
+      - run: echo "${{steps.package.outputs.content.environments}}"
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
