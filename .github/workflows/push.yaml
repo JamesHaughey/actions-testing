@@ -5,15 +5,6 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - name: Read package.json
-        id: json_environments
-        uses: juliangruber/read-file-action@v1
-        with:
-          path: ./environments.json
-
-      - run: |
-          echo ${{steps.json_environments.outputs.environments}}
-          echo ${{steps.json_environments.outputs.environments[1]}}
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
@@ -24,4 +15,13 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+      - name: Read package.json
+        id: json_environments
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./environments.json
+
+      - run: |
+          echo ${{steps.json_environments.outputs.environments}}
+          echo ${{steps.json_environments.outputs.environments[1]}}
       - run: echo "🍏 This job's status is ${{ job.status }}."
