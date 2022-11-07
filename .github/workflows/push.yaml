@@ -20,6 +20,6 @@ jobs:
         with:
           file_path: ./environments.json
 
-      - run: echo ${{steps.json_properties.outputs.environments}}
-      - run: echo ${{steps.json_properties.outputs.environments['dev']}}
+      - run: echo ${{steps.json_properties.outputs.environments.dev.layers}}
+      - run: echo ${{steps.json_properties.outputs.environments.dev.layers[1]}}
       - run: echo "🍏 This job's status is ${{ job.status }}."
