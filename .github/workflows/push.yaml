@@ -21,7 +21,14 @@ jobs:
         uses: juliangruber/read-file-action@v1
         with:
           path: ./environments.json
-
       - run: echo "${{steps.package.outputs.content.environments}}"
+      - name: get properties
+        id: json_properties
+        uses: zoexx/github-action-json-file-properties@release
+        with:
+          file_path: ./environments.json
 
+      - run: |
+          echo ${{steps.json_properties.outputs.environments}}
+          echo ${{steps.json_properties.outputs.environments["dev"]}}
       - run: echo "🍏 This job's status is ${{ job.status }}."
