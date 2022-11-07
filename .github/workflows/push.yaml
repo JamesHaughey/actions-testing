@@ -4,6 +4,8 @@ on: [push]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
+    outputs:
+      backends: ${{ steps.json_properties.outputs.backends }}
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
@@ -23,3 +25,11 @@ jobs:
       - run: echo ${{steps.json_properties.outputs.environments}}
       - run: echo ${{steps.json_properties.outputs.backends}}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+  Matrix-Job:
+    runs-on: ubuntu-latest
+    needs: Explore-GitHub-Actions
+    strategy:
+      matrix:
+        backend: ${{needs.Explore-GitHub-Actions.outputs.backends}}
+    steps:
+      - echo ${{matirx.backend}}
