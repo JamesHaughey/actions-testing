@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       backends: ${{ steps.json_properties.outputs.backends }}
-      environments: ${{ steps.json_properties.outputs.environments }}
+      environments: ${{ steps.simple_properties.outputs }}
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - name: Check out repository code
@@ -19,6 +19,11 @@ jobs:
         uses: zoexx/github-action-json-file-properties@release
         with:
           file_path: ./environments.json
+      - name: get simple properties
+        id: simple_properties
+        uses: zoexx/github-action-json-file-properties@release
+        with:
+          file_path: ./simple.json
       - id: set-matrix
         run: echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"
 
@@ -30,10 +35,17 @@ jobs:
         backend: ${{fromJson(needs.Explore-GitHub-Actions.outputs.backends)}}
     steps:
       - run: echo ${{ matrix.backend }}
-  ComplexMatrix-Job:
+  Demo-Matrix-Job:
     runs-on: ubuntu-latest
     needs: Explore-GitHub-Actions
     strategy:
       matrix: ${{fromJson(needs.Explore-GitHub-Actions.outputs.matrix)}}
     steps:
       - run: echo "Environment is ${{ matrix.project }}, layers are ${{ matrix.config}}"
+  Env-Matrix-Job:
+    runs-on: ubuntu-latest
+    needs: Explore-GitHub-Actions
+    strategy:
+      matrix: ${{fromJson(needs.Explore-GitHub-Actions.outputs.environments)}}
+    steps:
+      - run: echo "Environment is ${{ matrix.name }}, layers are ${{ matrix.layers}}"
