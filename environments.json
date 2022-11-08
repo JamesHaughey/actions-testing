@@ -1,27 +1,27 @@
 {
-  "environments": [
-    {
+  "environments": {
+    "dev": {
       "name": "Development",
       "layers": [
         "iam",
         "backend"
       ]
     },
-    {
+    "test": {
       "name": "Testing",
       "layers": [
         "iam",
         "application"
       ]
     },
-    {
+    "prod": {
       "name": "Production",
       "layers": [
         "iam",
         "application"
       ]
     }
-  ],
+  },
   "backends": [
     "dev",
     "test",
