@@ -1,5 +1,5 @@
 {
-  "environments": [
+  "includes": [
     {
       "name": "Development",
       "layers": [
