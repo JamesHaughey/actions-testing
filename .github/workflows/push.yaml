@@ -20,7 +20,7 @@ jobs:
           file_path: ./environments.json
       - id: set-environment
         run: |
-          JSON=$(cat simple.json)
+          JSON="$(cat simple.json)"
           echo $JSON
           echo "environments=${JSON}" >> $GITHUB_OUTPUT
       - id: debug_env
