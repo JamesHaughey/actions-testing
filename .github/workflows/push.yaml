@@ -21,10 +21,6 @@ jobs:
       - id: set-environment
         run: |
           JSON=$(cat simple.json)
-          echo "::set-output name=environments::${JSON}"
-      - id: set-environment
-        run: |
-          JSON=$(cat simple.json)
           echo $JSON
           echo "environments=${JSON}" >> $GITHUB_OUTPUT
       - id: debug_env
