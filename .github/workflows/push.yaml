@@ -22,7 +22,13 @@ jobs:
         run: |
           JSON=$(cat simple.json)
           echo "::set-output name=environments::${JSON}"
-      - run: echo "${{ steps.set-environment.outputs.environments}}"
+      - id: set-environment
+        run: |
+          JSON=$(cat simple.json)
+          echo $JSON
+          echo "environments=${JSON}" >> $GITHUB_OUTPUT
+      - id: debug_env
+        run: echo "${{ steps.set-environment.outputs.environments}}"
       - id: set-matrix
         run: echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"
 
