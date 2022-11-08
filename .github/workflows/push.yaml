@@ -6,24 +6,22 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       backends: ${{ steps.json_properties.outputs.backends }}
-      environments: ${{ steps.simple_properties.outputs }}
+      environments: ${{ steps.set-environment.outputs.environments }}
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
+        run: ls ${{ github.workspace }}
       - name: get properties
         id: json_properties
         uses: zoexx/github-action-json-file-properties@release
         with:
           file_path: ./environments.json
-      - name: get simple properties
-        id: simple_properties
-        uses: zoexx/github-action-json-file-properties@release
-        with:
-          file_path: ./simple.json
+      - id: set-environment
+        run: |
+          JSON=$(cat simple.json)
+          echo "::set-output name=environments::${JSON}"
       - id: set-matrix
         run: echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"
 
