@@ -30,6 +30,6 @@ jobs:
     needs: Explore-GitHub-Actions
     strategy:
       matrix:
-        backend: ${{needs.Explore-GitHub-Actions.outputs.backends}}
+        backend: ${{fromJson(needs.Explore-GitHub-Actions.outputs.backends)}}
     steps:
       - run: echo ${{ matrix.backend }}
