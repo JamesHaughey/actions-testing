@@ -1,0 +1,28 @@
+{
+  "environments": [
+    {
+      "id": "dev",
+      "name": "Development",
+      "layers": [
+        "iam",
+        "backend"
+      ]
+    },
+    {
+      "id": "tst",
+      "name": "Testing",
+      "layers": [
+        "iam",
+        "application"
+      ]
+    },
+    {
+      "id": "prd",
+      "name": "Production",
+      "layers": [
+        "iam",
+        "application"
+      ]
+    }
+  ]
+}
