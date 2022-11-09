@@ -19,6 +19,6 @@ jobs:
     environment: ${{ matrix.environments.id }}
     strategy:
       max-parallel: 1
-      matrix: ${{fromJson(needs.Explore-GitHub-Actions.outputs.environments)}}
+      matrix: ${{fromJson(needs.Set_Matrix_Output.outputs.environments)}}
     steps:
       - run: echo "Environment is ${{ matrix.environments.name }}, layers are ${{ matrix.environments.layers}}"
