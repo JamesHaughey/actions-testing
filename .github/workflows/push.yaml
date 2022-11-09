@@ -45,8 +45,8 @@ jobs:
   Env-Matrix-Job:
     runs-on: ubuntu-latest
     needs: Explore-GitHub-Actions
-    max-parallel: 1
     strategy:
+      max-parallel: 1
       matrix: ${{fromJson(needs.Explore-GitHub-Actions.outputs.environments)}}
     steps:
       - run: echo "Environment is ${{ matrix.environments.name }}, layers are ${{ matrix.environments.layers}}"
