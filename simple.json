@@ -1,6 +1,7 @@
 {
   "environments": [
     {
+      "id": "dev",
       "name": "Development",
       "layers": [
         "iam",
@@ -8,6 +9,7 @@
       ]
     },
     {
+      "id": "tst",
       "name": "Testing",
       "layers": [
         "iam",
@@ -15,6 +17,7 @@
       ]
     },
     {
+      "id": "prd",
       "name": "Production",
       "layers": [
         "iam",

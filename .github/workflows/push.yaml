@@ -45,6 +45,7 @@ jobs:
   Env-Matrix-Job:
     runs-on: ubuntu-latest
     needs: Explore-GitHub-Actions
+    environment: ${{ matrix.environments.id }}
     strategy:
       max-parallel: 1
       matrix: ${{fromJson(needs.Explore-GitHub-Actions.outputs.environments)}}
