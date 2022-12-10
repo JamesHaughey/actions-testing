@@ -1,0 +1,13 @@
+name: Renovate
+on:
+  push
+
+jobs:
+  call-workflow:
+    uses: ./.github/workflows/.terraform_plan.yml
+    with:
+      string: Something
+      env: ${{ matrix.env }}
+    strategy:
+      matrix:
+        env: [dev, tst]
